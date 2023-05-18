@@ -1,4 +1,4 @@
-from typing import Callable # Type hints for functions
+from typing import Callable 
 from math import sin, cos
 
 def bisection(
@@ -8,7 +8,8 @@ def bisection(
         tol: float = 10**(-10)
     ):
     """
-    Runs the bisection algorithm until a root is found within tolerance.
+    Runs the bisection algorithm until a root of `f` is found within 
+    tolerance `tol`.
     """
 
     c = a
@@ -19,7 +20,7 @@ def bisection(
         count += 1
         print(f"x{count} =", c)
 
-        fc = f(c) # Reduce function evaluation
+        fc = f(c)
         if f(a)*fc < 0:
             b = c
         elif fc*f(b) < 0:
@@ -41,11 +42,11 @@ def do_bisect(f: Callable[[float], float], a: float, b: float) -> float:
         return b
     return (a+b)/2
 
-### Test bisection ###
-
-def func(x: float) -> float:
-    return cos(sin(cos(x))) - sin(cos(sin(x)))
-
-print(
-    bisection(func, 1, 3)
-)
+# # Test bisection
+# print(
+#     bisection(
+#         f = lambda x: cos(sin(cos(x))) - sin(cos(sin(x))), 
+#         a = 1, 
+#         b = 3
+#     )
+# )

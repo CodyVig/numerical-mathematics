@@ -16,15 +16,13 @@ def simpson(f: Callable[[float], float], a: float, b: float, n: int) -> float:
     delta_x = (b - a) / n
     simpson = f(a) + f(b)
     
-    # Floating point rounding is causing problems. Round to number of digits in h:
+    # Floating point rounding is causing problems. 
+    # Round to number of digits in delta_x:
     decimal_length = len(str(delta_x).split(".")[1])
 
     for i in range(1, n):
         x = round(a + i * delta_x, decimal_length)
-        if i%2 == 0:
-            simpson += 2 * f(x)
-        else:
-            simpson += 4 * f(x)
+        simpson += 2 * f(x) if i%2 == 0 else 4 * f(x)
     
     return simpson * delta_x / 3
 

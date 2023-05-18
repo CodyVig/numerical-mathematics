@@ -21,7 +21,8 @@ def rk4(
             f"h = {h} must divide xf - x0 = {xf - x0}."
         )
     
-    # Floating point rounding is causing problems. Round to number of digits in h:
+    # Floating point rounding is causing problems. 
+    # Round to number of digits in h:
     decimal_length = len(str(h).split(".")[1])
 
     x = x0
@@ -36,16 +37,16 @@ def rk4(
         x = round(x + h, decimal_length)
     return y
 
-# Example 1 in Zill, section 9.2
-print(
-    rk4(
-        f = lambda x, y: 2*x*y,
-        h = 0.1,
-        x0 = 1,
-        y0 = 1,
-        xf = 1.5
-    )
-)
+# # Example 1 in Zill, section 9.2
+# print(
+#     rk4(
+#         f = lambda x, y: 2*x*y,
+#         h = 0.1,
+#         x0 = 1,
+#         y0 = 1,
+#         xf = 1.5
+#     )
+# )
 
 # # Approximation for e.
 # print(

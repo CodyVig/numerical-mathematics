@@ -1,6 +1,17 @@
+"""
+Multiplicative persistence.
+
+Replace a positive integer n with the product of its digits and repeat 
+inductively until n is a single digit. The number of iterations required is 
+called the `multiplicative persistence` of n.
+"""
+
 from functools import reduce
 
 def get_digits(n: int) -> list[int]:
+    """
+    Returns the digits of n as a list of ints.
+    """
     digits = [n%10]
     k = 1
     while 10**k <= n:
@@ -9,11 +20,14 @@ def get_digits(n: int) -> list[int]:
     return digits
 
 def do_persistence(n: int) -> int:
+    """
+    Run a single iteration of the persistence algorithm.
+    """
     return reduce((lambda x, y: x * y), get_digits(n))
 
 def persistence(n: int, verbose = False) -> int:
     """
-    Returns the number of persistence iterations required
+    Returns the number of iterations of the persistence algorithm required
     to bring a number to a single digit
     """
     count = 0
@@ -27,6 +41,10 @@ def persistence(n: int, verbose = False) -> int:
     return count
 
 def most_persistent(n: int) -> dict:
+    """
+    Finds the smallest positive integer k <= n which has the largest
+    persistence.
+    """
     max_persistence = 0
     max_number = 0
     for k in range(1, n):

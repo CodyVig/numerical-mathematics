@@ -22,7 +22,8 @@ def euler_method(
         raise ValueError(
             f"h = {h} needs to divide xf - x0 = {xf - x0}."
         )
-    # Floating point rounding is causing problems. Round to number of digits in h:
+    # Floating point rounding is causing problems. 
+    # Round to number of digits in h:
     n = len(str(h).split(".")[1])
 
     x = x0

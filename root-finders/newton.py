@@ -7,8 +7,7 @@ def newtons_method(
         tol: float = 10**(-10)
     ) -> float:
     """
-    Implements Newton's Method to find a root of a function f.
-    x[n+1] = x[n] - f(x[n]) / f'(x[n])
+    Implements Newton's Method to find a root of a function `f`.
     """
 
     x = initial_guess
@@ -25,7 +24,10 @@ def do_newton(f: Callable[[float], float], x: float):
     f_prime = derivative(f)
     return x - (f(x) / f_prime(x))
 
-def derivative(f: Callable[[float], float]) -> float:
+def derivative(f: Callable[[float], float]) -> Callable[[float], float]:
+    """
+    Returns the derivative of `f` as a function.
+    """
     def compute_derivative(x: float, dx = 10**(-5)) -> float:
         """
         Numerically approximates the derivative of f. 
@@ -33,11 +35,10 @@ def derivative(f: Callable[[float], float]) -> float:
         return (f(x + dx) - f(x)) / dx
     return compute_derivative
 
-### Test Newton's method ###
-
-def func(x: float) -> float:
-    return cos(sin(cos(x))) - sin(cos(sin(x)))
-
-print( 
-    newtons_method(func, 2)
-)
+# # Test Newton's method
+# print( 
+#     newtons_method(
+#         f = lambda x: cos(sin(cos(x))) - sin(cos(sin(x))), 
+#         initial_guess = 2
+#     )
+# )
