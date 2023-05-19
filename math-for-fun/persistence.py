@@ -8,16 +8,18 @@ called the `multiplicative persistence` of n.
 
 from functools import reduce
 
+
 def get_digits(n: int) -> list[int]:
     """
     Returns the digits of n as a list of ints.
     """
-    digits = [n%10]
+    digits = [n % 10]
     k = 1
     while 10**k <= n:
-        digits = [(n%10**(k+1) - n%10**k)//10**k] + digits
+        digits = [(n % 10 ** (k + 1) - n % 10**k) // 10**k] + digits
         k += 1
     return digits
+
 
 def do_persistence(n: int) -> int:
     """
@@ -25,7 +27,8 @@ def do_persistence(n: int) -> int:
     """
     return reduce((lambda x, y: x * y), get_digits(n))
 
-def persistence(n: int, verbose = False) -> int:
+
+def persistence(n: int, verbose=False) -> int:
     """
     Returns the number of iterations of the persistence algorithm required
     to bring a number to a single digit
@@ -40,6 +43,7 @@ def persistence(n: int, verbose = False) -> int:
             print("Count", count, "| n =", n)
     return count
 
+
 def most_persistent(n: int) -> dict:
     """
     Finds the smallest positive integer k <= n which has the largest
@@ -53,6 +57,7 @@ def most_persistent(n: int) -> dict:
             max_persistence = potential_max
             max_number = k
     return {max_number: max_persistence}
+
 
 persistence(n=277777788888899, verbose=True)
 
