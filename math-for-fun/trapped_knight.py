@@ -2,6 +2,7 @@
 The trapped knight
 """
 
+import matplotlib.pyplot as plt
 
 class TrappedKnight:
     def __init__(self, n: int, verbose: bool = False):
@@ -154,12 +155,13 @@ class TrappedKnight:
 
 
 if __name__ == "__main__":
-    tk = TrappedKnight(n=2, verbose=True)
-    knight = tk.simulate_walk()
-    for key in knight.keys():
-        print(f"{key} : {knight.get(key)}")
+    # # See results for n = 2.
+    # tk = TrappedKnight(n=2, verbose=True)
+    # knight = tk.simulate_walk()
+    # for key in knight.keys():
+    #     print(f"{key} : {knight.get(key)}")
 
-    # # Uncomment the following to test for correct answer with n = 2.
+    # # Test for correct answer with n = 2.
     # sequence = knight.get("sequence")
     # x_path = knight.get("x_path")
     # y_path = knight.get("y_path")
@@ -169,10 +171,33 @@ if __name__ == "__main__":
     # print(y_path == [0, 1, -1, 0, 1, -1, 1, 0, -1, 1, 0, -2])
     # print(x_path == [0, 2, 1, -1, 1, 0, -1, 1, -1, 0, 2, 1])
 
-    # # Uncomment the following to see the full trapped knight solution.
-    # tk = TrappedKnight(n=100, verbose=False)
-    # knight = tk.simulate_walk()
-    # print(
-    #     "The last number in the trapped knight sequence is "
-    #     + str(knight.get("sequence")[-1])
-    # )
+    # Full trapped knight solution.
+    tk = TrappedKnight(n=100, verbose=False)
+    knight = tk.simulate_walk()
+    scores, x_path, y_path = knight.values()
+
+    plt.title("Trapped Knight Sequence")
+    plt.plot(x_path, y_path, linewidth=0.5)
+    plt.plot(
+        x_path[0], y_path[0], marker="o", markersize=3, color="green", 
+    )
+    plt.annotate(
+        text=f"Spiral number {scores[0]}",
+        xy=(x_path[0], y_path[0]),
+        textcoords="offset points",
+        xytext=(0,-10),
+        ha='center'
+    )
+
+    plt.plot(
+        x_path[-1], y_path[-1], marker="o", markersize=3, color="red"
+    )
+    plt.annotate(
+        text=f"Spiral number {scores[-1]}",
+        xy=(x_path[-1], y_path[-1]),
+        textcoords="offset points",
+        xytext=(0,-10),
+        ha='center'
+    )
+
+    plt.show()
