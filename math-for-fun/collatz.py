@@ -15,11 +15,13 @@ that all starting numbers finish at 1.
 Which starting number, under one million, produces the longest chain?
 """
 
+
 def collatz(n: int) -> int:
     """
     Runs the Collatz algorithm
     """
-    return n//2 if n % 2 == 0 else 3 * n + 1
+    return n // 2 if n % 2 == 0 else 3 * n + 1
+
 
 def collatz_stop_time(n: int) -> int:
     """
@@ -31,6 +33,7 @@ def collatz_stop_time(n: int) -> int:
         n = collatz(n)
         iterations += 1
     return iterations
+
 
 def find_max_collatz_sequence(n: int = 10**6) -> dict:
     """
@@ -45,6 +48,7 @@ def find_max_collatz_sequence(n: int = 10**6) -> dict:
         if sequence_length > largest_squence:
             largest_squence = sequence_length
             largest_starting = k
-    return {largest_starting:largest_squence}
+    return {largest_starting: largest_squence}
+
 
 print(find_max_collatz_sequence())
